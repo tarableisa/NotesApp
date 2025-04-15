@@ -15,10 +15,11 @@ steps:
       - name: "npm-cache"
         path: /root/.npm
 
-  # Step 3: Deploy ke App Engine
+   # Step 3: Deploy ke App Engine
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-    args: ["app", "deploy", "--quiet"]
+    args: ["gcloud", "app", "deploy", "--quiet"]
     dir: "frontend"
+
 
 options:
   logging: CLOUD_LOGGING_ONLY
