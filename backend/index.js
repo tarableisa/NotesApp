@@ -44,6 +44,4 @@ app.use(NotesRoute);
   }
 })();
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server running on http://0.0.0.0:${port}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
