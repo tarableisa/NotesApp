@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import db from "./config/Database.js";
 import NotesRoute from "./routes/NotesRoute.js";
+import "./model/index.js"; // <- PENTING: memicu sinkronisasi DB
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -28,6 +30,7 @@ app.options("*", cors(corsOptions)); // Menanggapi preflight requests
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(NotesRoute);
 
 // Database Connection
