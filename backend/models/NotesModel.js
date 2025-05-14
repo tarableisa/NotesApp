@@ -11,11 +11,11 @@ const Note = db.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    judul: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    isi_notes: {
+    content: {
       type: DataTypes.TEXT,
       allowNull: false,
     },

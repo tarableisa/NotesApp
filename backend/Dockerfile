@@ -1,10 +1,17 @@
+# Gunakan image ringan
 FROM node:20-alpine
 
+# Set direktori kerja
 WORKDIR /app
+
+# Salin file dan install dependencies
 COPY package*.json ./
-WORKDIR /app/backend
-RUN npm install --production 
-# --production = tanpa devDepedencies
+RUN npm install --production
+
 COPY . .
+
+# EXPOSE port sesuai yang digunakan app.listen
 EXPOSE 5000
+
+# Jalankan aplikasi
 CMD ["node", "index.js"]

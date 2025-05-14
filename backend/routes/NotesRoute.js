@@ -12,7 +12,7 @@ import {
   Login,
   refreshToken,
   logout,
-} from "../controller/UsersController.js";
+} from "../controllers/UsersController.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
@@ -23,11 +23,13 @@ router.post("/login", Login);
 router.get("/token", refreshToken);
 router.delete("/logout", logout);
 
-router.get("/notes",verifyToken, getNotes);
-router.get("/notes/:id",verifyToken, getNoteById);
-router.post("/notes",verifyToken, createNote);
-router.put("/notes/:id",verifyToken, updateNote);
-router.delete("/notes/:id",verifyToken, deleteNote);
+//notes routes
+router.get("/notes", verifyToken, getNotes);
+router.get("/notes/:id", verifyToken, getNoteById);
+router.post("/notes", verifyToken, createNote);
+router.put("/notes/:id", verifyToken, updateNote);
+router.delete("/notes/:id", verifyToken, deleteNote);
+
 
 router.all("*", (req, res) => {
   res.status(404).json({ message: "Route not found" });

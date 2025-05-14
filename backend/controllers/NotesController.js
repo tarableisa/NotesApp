@@ -3,8 +3,8 @@ import Note from "../models/NotesModel.js";
 // Get All Notes
 export const getNotes = async (req, res) => {
   try {
-    const notes = await Note.findAll();
-    res.json(notes);
+    const note = await Note.findAll();
+    res.json(note);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -24,7 +24,8 @@ export const getNoteById = async (req, res) => {
 // Create Note
 export const createNote = async (req, res) => {
   try {
-    await Note.create(req.body);
+    const userId = req.user.id; // pastikan verifyToken sudah dipasang
+    await Note.create({ ...req.body, userId });
     res.json({ message: "Note Created" });
   } catch (error) {
     res.status(500).json({ message: error.message });
