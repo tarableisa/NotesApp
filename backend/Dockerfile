@@ -2,6 +2,7 @@ FROM node:20-alpine
 
 WORKDIR /app
 COPY package*.json ./
+WORKDIR /app/backend
 RUN npm install --production 
 # --production = tanpa devDepedencies
 COPY . .
