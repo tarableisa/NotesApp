@@ -23,6 +23,10 @@ const Note = db.define(
       type: DataTypes.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     },
+    userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    },
   },
   {
     timestamps: false,
