@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { AuthProvider } from "./auth/AuthProvider";
-import AxiosInterceptor from "./api/axiosInterceptor";
 import { FaList, FaPlus } from 'react-icons/fa';
 import { useState } from 'react';
 import AddNotes from './pages/AddNotes';

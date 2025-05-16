@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { createNote, updateNote } from "../services/api";
-import axios from '../api/axiosInstance';
-import useAuth from "../auth/useAuth";
+
 
 
 const NoteForm = ({ noteToEdit }) => {
