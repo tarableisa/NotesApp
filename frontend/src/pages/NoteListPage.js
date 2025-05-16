@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { getNotes, deleteNote } from "../services/api";
 import NoteList from "../components/NoteList";
+import axios from '../api/axiosInstance';
+import useAuth from "../auth/useAuth";
+
 
 const NoteListPage = ({ setNoteToEdit }) => {
   const [notes, setNotes] = useState([]);

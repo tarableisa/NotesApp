@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { getNotes, deleteNote } from "../services/api";
 import NoteList from "../components/NoteList";
 import NoteForm from "../components/NoteForm";
+import axios from '../api/axiosInstance';
+import useAuth from "../auth/useAuth";
+
 
 const Home = () => {
   const [notes, setNotes] = useState([]);

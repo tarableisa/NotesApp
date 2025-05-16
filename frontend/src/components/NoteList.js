@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import axios from '../api/axiosInstance';
+import useAuth from "../auth/useAuth";
 
 const NoteList = ({ notes, setNoteToEdit, handleDelete }) => {
   const navigate = useNavigate();
