@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // untuk navigasi programatik
 import axios from "axios";
-import { BASE_URL } from "../utils/utils.js";
+import { BASE_URL } from "../utils";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
