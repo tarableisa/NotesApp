@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 const corsOptions = {
  origin: [
     "https://notes-fe0173-dot-if-b-08.uc.r.appspot.com",
-    "http://localhost:3000", // Tambahkan localhost untuk pengembangan lokal
+    "http://localhost:5001", // Tambahkan localhost untuk pengembangan lokal
   ], // Ganti dengan URL frontend yang terdeploy
   credentials: true, // Memungkinkan penggunaan cookies
   methods: ["GET", "POST", "PUT", "DELETE"],
