@@ -2,22 +2,22 @@ import { useState, useEffect } from "react";
 import { createNote, updateNote } from "../services/api";
 
 const NoteForm = ({ noteToEdit, fetchNotes, setNoteToEdit }) => {
-  const [judul, setJudul] = useState("");
-  const [isi_notes, setIsiNotes] = useState("");
+ const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     if (noteToEdit) {
-      setJudul(noteToEdit.judul);
-      setIsiNotes(noteToEdit.isi_notes);
+      setTitle(noteToEdit.title || "");
+      setContent(noteToEdit.content || "");
     } else {
-      setJudul("");
-      setIsiNotes("");
+      setTitle("");
+      setContent("");
     }
   }, [noteToEdit]);
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  const note = { title: judul, content: isi_notes }; 
+  const note = { title, content}; 
   console.log("Note yang dikirim:", note); // Debug log
 await createNote(note);
 // GANTI INI
@@ -29,8 +29,8 @@ await createNote(note);
     } else {
       await createNote(note);
     }
-    setJudul("");
-    setIsiNotes("");
+    setTitle("");
+    setContent("");
     fetchNotes?.();
   } catch (error) {
     console.error("Gagal menyimpan catatan", error);
@@ -50,15 +50,15 @@ await createNote(note);
       <input
         type="text"
         placeholder="Judul"
-        value={judul}
-        onChange={(e) => setJudul(e.target.value)}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         className="w-full p-3 mb-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
       <textarea
         placeholder="Isi catatan"
-        value={isi_notes}
-        onChange={(e) => setIsiNotes(e.target.value)}
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
         className="w-full p-3 mb-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
@@ -72,4 +72,4 @@ await createNote(note);
   );
 };
 
-export default NoteForm;
+export default NoteForm;
