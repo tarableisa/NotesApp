@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { createNote, updateNote } from "../services/api";
 
-
-
-const NoteForm = ({ noteToEdit }) => {
+const NoteForm = ({ noteToEdit, fetchNotes, setNoteToEdit }) => {
   const [judul, setJudul] = useState("");
   const [isi_notes, setIsiNotes] = useState("");
 
@@ -24,20 +22,23 @@ const NoteForm = ({ noteToEdit }) => {
     try {
       if (noteToEdit) {
         await updateNote(noteToEdit.id, note);
+        setNoteToEdit(null);
       } else {
         await createNote(note);
       }
       setJudul("");
       setIsiNotes("");
+      fetchNotes?.();
     } catch (error) {
       console.error("Gagal menyimpan catatan", error);
     }
   };
 
-  console.log("NoteForm dirender");
-
   return (
-    <form onSubmit={handleSubmit} className="bg-gradient-to-r from-blue-400 to-purple-500 p-6 rounded-xl shadow-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-gradient-to-r from-blue-400 to-purple-500 p-6 rounded-xl shadow-lg max-w-md w-full"
+    >
       <input
         type="text"
         placeholder="Judul"
@@ -53,7 +54,10 @@ const NoteForm = ({ noteToEdit }) => {
         className="w-full p-3 mb-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
-      <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl font-bold">
+      <button
+        type="submit"
+        className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl font-bold"
+      >
         {noteToEdit ? "Update" : "Tambah"}
       </button>
     </form>
