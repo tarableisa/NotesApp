@@ -19,8 +19,6 @@ const NoteForm = ({ noteToEdit, fetchNotes, setNoteToEdit }) => {
   e.preventDefault();
   const note = { title: judul, content: isi_notes }; 
   console.log("Note yang dikirim:", note); // Debug log
-await createNote(note);
-// GANTI INI
 
   try {
     if (noteToEdit) {
