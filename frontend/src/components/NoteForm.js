@@ -34,6 +34,8 @@ const NoteForm = ({ noteToEdit }) => {
     }
   };
 
+  console.log("NoteForm dirender");
+
   return (
     <form onSubmit={handleSubmit} className="bg-gradient-to-r from-blue-400 to-purple-500 p-6 rounded-xl shadow-lg">
       <input
