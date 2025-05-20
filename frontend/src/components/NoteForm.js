@@ -15,28 +15,29 @@ const NoteForm = ({ noteToEdit, fetchNotes, setNoteToEdit }) => {
     }
   }, [noteToEdit]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const note = { judul, isi_notes };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  const note = { title: judul, content: isi_notes }; // GANTI INI
 
-    try {
-      if (noteToEdit) {
-        await updateNote(noteToEdit.id, note);
-        setNoteToEdit(null);
-      } else {
-        await createNote(note);
-      }
-      setJudul("");
-      setIsiNotes("");
-      fetchNotes?.();
-    } catch (error) {
-      console.error("Gagal menyimpan catatan", error);
-      if (error.response) {
-    console.error("Response data:", error.response.data);
-    alert("Error backend: " + JSON.stringify(error.response.data));
-      }
+  try {
+    if (noteToEdit) {
+      await updateNote(noteToEdit.id, note);
+      setNoteToEdit(null);
+    } else {
+      await createNote(note);
     }
-  };
+    setJudul("");
+    setIsiNotes("");
+    fetchNotes?.();
+  } catch (error) {
+    console.error("Gagal menyimpan catatan", error);
+    if (error.response) {
+      console.error("Response data:", error.response.data);
+      alert("Error backend: " + JSON.stringify(error.response.data));
+    }
+  }
+};
+
 
   return (
     <form
