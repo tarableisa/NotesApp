@@ -31,6 +31,10 @@ const NoteForm = ({ noteToEdit, fetchNotes, setNoteToEdit }) => {
       fetchNotes?.();
     } catch (error) {
       console.error("Gagal menyimpan catatan", error);
+      if (error.response) {
+    console.error("Response data:", error.response.data);
+    alert("Error backend: " + JSON.stringify(error.response.data));
+      }
     }
   };
 
