@@ -16,8 +16,8 @@ const NoteList = ({ notes, setNoteToEdit, handleDelete }) => {
         {notes.length > 0 ? (
           notes.map((note) => (
             <li key={note.id} className="bg-white border p-4 mb-4 rounded-xl shadow-lg">
-              <h2 className="text-xl font-semibold text-gray-800">{note.judul}</h2>
-              <p className="text-gray-600">{note.isi_notes}</p>
+              <h2 className="text-xl font-semibold text-gray-800">{note.title}</h2>
+              <p className="text-gray-600">{note.content}</p>
               <p className="text-sm text-gray-500 mt-2">📅 Dibuat: {note.created_at}</p>
               <div className="flex mt-4">
                 <button
