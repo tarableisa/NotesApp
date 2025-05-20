@@ -35,7 +35,7 @@ app.use(cors({
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(NotesRoute);
+app.use("/", NotesRoute);
 
 // Database Connection & Sync
 (async () => {
