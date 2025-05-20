@@ -2,42 +2,45 @@ import { useState, useEffect } from "react";
 import { createNote, updateNote } from "../services/api";
 
 const NoteForm = ({ noteToEdit, fetchNotes, setNoteToEdit }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [judul, setJudul] = useState("");
+  const [isi_notes, setIsiNotes] = useState("");
 
   useEffect(() => {
     if (noteToEdit) {
-      setTitle(noteToEdit.title || "");
-      setContent(noteToEdit.content || "");
+      setJudul(noteToEdit.judul);
+      setIsiNotes(noteToEdit.isi_notes);
     } else {
-      setTitle("");
-      setContent("");
+      setJudul("");
+      setIsiNotes("");
     }
   }, [noteToEdit]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const note = { title, content };
-    console.log("Note yang dikirim:", note);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  const note = { title: judul, content: isi_notes }; 
+  console.log("Note yang dikirim:", note); // Debug log
+await createNote(note);
+// GANTI INI
 
-    try {
-      if (noteToEdit) {
-        await updateNote(noteToEdit.id, note);
-        setNoteToEdit(null);
-      } else {
-        await createNote(note);
-      }
-      setTitle("");
-      setContent("");
-      fetchNotes?.();
-    } catch (error) {
-      console.error("Gagal menyimpan catatan", error);
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        alert("Error backend: " + JSON.stringify(error.response.data));
-      }
+  try {
+    if (noteToEdit) {
+      await updateNote(noteToEdit.id, note);
+      setNoteToEdit(null);
+    } else {
+      await createNote(note);
     }
-  };
+    setJudul("");
+    setIsiNotes("");
+    fetchNotes?.();
+  } catch (error) {
+    console.error("Gagal menyimpan catatan", error);
+    if (error.response) {
+      console.error("Response data:", error.response.data);
+      alert("Error backend: " + JSON.stringify(error.response.data));
+    }
+  }
+};
+
 
   return (
     <form
@@ -47,15 +50,15 @@ const NoteForm = ({ noteToEdit, fetchNotes, setNoteToEdit }) => {
       <input
         type="text"
         placeholder="Judul"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={judul}
+        onChange={(e) => setJudul(e.target.value)}
         className="w-full p-3 mb-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
       <textarea
         placeholder="Isi catatan"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
+        value={isi_notes}
+        onChange={(e) => setIsiNotes(e.target.value)}
         className="w-full p-3 mb-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
@@ -69,4 +72,4 @@ const NoteForm = ({ noteToEdit, fetchNotes, setNoteToEdit }) => {
   );
 };
 
-export default NoteForm;
+export default NoteForm;
